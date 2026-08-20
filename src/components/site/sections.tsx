@@ -328,11 +328,11 @@ export function AreaAtendimento() {
           horário confirmados.
         </p>
         <dl className="mt-8 grid gap-5 sm:grid-cols-3">
-          {[
-            ["Endereço", site.address],
-            ["Horário", site.hours],
-            ["Contato", site.phone],
-          ].map(([label, value]) => (
+          {([
+            { label: "Endereço", value: site.address as string },
+            { label: "Horário", value: site.hours as string },
+            { label: "Contato", value: site.phone as string },
+          ]).map(({ label, value }) => (
             <div key={label} className="card p-5">
               <dt className="text-sm font-semibold text-muted-foreground">{label}</dt>
               <dd className="mt-1 font-semibold">{isReal(value) ? value : "A confirmar"}</dd>

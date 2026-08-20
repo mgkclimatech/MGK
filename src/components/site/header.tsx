@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import logo from "@/assets/mgk-logo.png";
+import logoAsset from "@/assets/mgk-logo.png.asset.json";
+
+const logo = logoAsset.url;
 import { phoneHref, site, isReal, track, whatsappHref } from "@/lib/site";
 import { IconPhone, IconWhatsApp } from "./icons";
 
