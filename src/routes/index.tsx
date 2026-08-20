@@ -55,10 +55,10 @@ const businessLd = {
 const faqLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: faqs.map((f) => ({
+  mainEntity: faqs.map(([q, a]) => ({
     "@type": "Question",
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer", text: f.a },
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
   })),
 };
 
