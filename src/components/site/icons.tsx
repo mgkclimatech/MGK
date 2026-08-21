@@ -124,3 +124,58 @@ export const IconStore = (p: P) => (
     <path d="M5.5 12v7.5h13V12" />
   </svg>
 );
+
+export const IconSparkles = (p: P) => (
+  <svg {...base} {...p}>
+    <path d="m12 3-1.5 4.5L6 9l4.5 1.5L12 15l1.5-4.5L18 9l-4.5-1.5z" />
+    <path d="M5 17l-1 3-1-3-3-1 3-1 1-3 1 3 3 1-3 1z" />
+    <path d="M19 14l-1 2.5-1-2.5-2.5-1 2.5-1 1-2.5 1 2.5 2.5 1-2.5 1z" />
+  </svg>
+);
+
+export const IconLayoutGrid = (p: P) => (
+  <svg {...base} {...p}>
+    <rect x="3" y="3" width="7" height="7" rx="1" />
+    <rect x="14" y="3" width="7" height="7" rx="1" />
+    <rect x="3" y="14" width="7" height="7" rx="1" />
+    <rect x="14" y="14" width="7" height="7" rx="1" />
+  </svg>
+);
+
+export const IconUsers = (p: P) => (
+  <svg {...base} {...p}>
+    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+  </svg>
+);
+
+export const IconFileText = (p: P) => (
+  <svg {...base} {...p}>
+    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5z" />
+    <polyline points="14 2 14 8 20 8" />
+    <line x1="9" y1="13" x2="15" y2="13" />
+    <line x1="9" y1="17" x2="15" y2="17" />
+    <line x1="9" y1="9" x2="10" y2="9" />
+  </svg>
+);
+
+export const IconMail = (p: P) => (
+  <svg {...base} {...p}>
+    <rect x="2" y="4" width="20" height="16" rx="2" />
+    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+  </svg>
+);
+
+export const IconZap = (p: P) => (
+  <svg {...base} {...p}>
+    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+  </svg>
+);
+
+export const IconChevronRight = (p: P) => (
+  <svg {...base} {...p}>
+    <path d="m9 18 6-6-6-6" />
+  </svg>
+);
