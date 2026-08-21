@@ -3,7 +3,7 @@ import logoAsset from "@/assets/mgk-logo.png.asset.json";
 
 const logo = logoAsset.url;
 import { phoneHref, site, isReal, track, whatsappHref } from "@/lib/site";
-import { IconPhone, IconWhatsApp } from "./icons";
+import { IconArrow, IconPhone, IconWhatsApp } from "./icons";
 
 const nav = [
   { href: "#servicos", label: "Serviços" },
@@ -23,6 +23,13 @@ export function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    document.body.dataset["menuOpen"] = open ? "true" : "false";
+    return () => {
+      delete document.body.dataset["menuOpen"];
+    };
+  }, [open]);
 
   return (
     <header
