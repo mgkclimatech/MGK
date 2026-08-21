@@ -3,7 +3,7 @@ import logoAsset from "@/assets/mgk-logo.png.asset.json";
 
 const logo = logoAsset.url;
 import { phoneHref, site, isReal, track, whatsappHref } from "@/lib/site";
-import { IconPhone, IconWhatsApp } from "./icons";
+import { IconArrow, IconPhone, IconWhatsApp } from "./icons";
 
 const nav = [
   { href: "#servicos", label: "Serviços" },
@@ -23,6 +23,13 @@ export function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    document.body.dataset["menuOpen"] = open ? "true" : "false";
+    return () => {
+      delete document.body.dataset["menuOpen"];
+    };
+  }, [open]);
 
   return (
     <header
@@ -75,43 +82,77 @@ export function Header() {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls="menu-mobile"
-          className="btn btn-ghost !min-h-11 !px-4 lg:hidden"
+          aria-label={open ? "Fechar menu" : "Abrir menu"}
+          className="btn btn-ghost !min-h-11 !w-11 !px-0 lg:hidden"
         >
-          <span className="sr-only">Abrir menu de navegação</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
-            {open ? <path d="M6 6l12 12M18 6 6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+          <svg
+            className="burger"
+            data-open={open}
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            fill="none"
+          >
+            <line x1="4" y1="6" x2="20" y2="6" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="18" x2="20" y2="18" />
           </svg>
-          <span aria-hidden="true" className="text-[0.95rem] font-semibold">Menu</span>
         </button>
       </div>
 
-      {open && (
-        <div id="menu-mobile" className="hairline lg:hidden">
-          <nav aria-label="Navegação mobile" className="container-page flex flex-col py-3">
-            {nav.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="rounded-md px-2 py-3 text-base font-medium hover:bg-muted"
-              >
-                {item.label}
-              </a>
-            ))}
+      <div
+        id="menu-mobile"
+        data-open={open}
+        className="menu-mobile absolute inset-x-0 top-full z-40 h-[calc(100dvh-4.5rem)] overflow-y-auto bg-background lg:hidden"
+      >
+        <nav aria-label="Navegação mobile" className="container-page flex flex-col gap-1 py-4">
+          {nav.map((item) => (
             <a
-              href={whatsappHref}
+              key={item.href}
+              href={item.href}
+              onClick={() => setOpen(false)}
+              className="flex items-center justify-between gap-3 rounded-xl border border-border bg-card px-4 py-4 text-base font-semibold transition-colors hover:border-accent hover:bg-surface"
+            >
+              <span className="flex min-w-0 items-center gap-3">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-muted text-accent">
+                  <IconArrow width={16} height={16} />
+                </span>
+                <span className="truncate">{item.label}</span>
+              </span>
+              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" className="shrink-0 text-muted-foreground">
+                <path d="m9 6 6 6-6 6" />
+              </svg>
+            </a>
+          ))}
+
+          <a
+            href={whatsappHref}
+            onClick={() => {
+              setOpen(false);
+              track("click_whatsapp", { local: "menu_mobile" });
+            }}
+            className="btn btn-primary mt-3"
+          >
+            <IconWhatsApp width={19} height={19} />
+            Solicitar orçamento
+          </a>
+          {isReal(site.phone) && (
+            <a
+              href={phoneHref}
               onClick={() => {
                 setOpen(false);
-                track("click_whatsapp", { local: "menu_mobile" });
+                track("click_telefone", { local: "menu_mobile" });
               }}
-              className="btn btn-primary mt-3"
+              className="btn btn-ghost mt-2"
             >
-              <IconWhatsApp width={19} height={19} />
-              Solicitar orçamento
+              <IconPhone width={18} height={18} />
+              {site.phone}
             </a>
-          </nav>
-        </div>
-      )}
+          )}
+        </nav>
+      </div>
+
     </header>
   );
 }
