@@ -104,7 +104,7 @@ export function Header() {
       <div
         id="menu-mobile"
         data-open={open}
-        className="menu-mobile fixed inset-x-0 top-[4.5rem] bottom-0 z-40 overflow-y-auto bg-background lg:hidden"
+        className="menu-mobile absolute inset-x-0 top-full z-40 h-[calc(100dvh-4.5rem)] overflow-y-auto bg-background lg:hidden"
       >
         <nav aria-label="Navegação mobile" className="container-page flex flex-col gap-1 py-4">
           {nav.map((item) => (
