@@ -3,19 +3,30 @@ import logoAsset from "@/assets/mgk-logo.png.asset.json";
 
 const logo = logoAsset.url;
 import { phoneHref, site, isReal, track, whatsappHref } from "@/lib/site";
-import { IconArrow, IconPhone, IconWhatsApp } from "./icons";
+import { MenuIcon } from "./menu-icon";
+import {
+  IconChevronRight,
+  IconFileText,
+  IconLayoutGrid,
+  IconPhone,
+  IconSparkles,
+  IconUsers,
+  IconWhatsApp,
+  IconZap,
+} from "./icons";
 
 const nav = [
-  { href: "#servicos", label: "Serviços" },
-  { href: "#diferenciais", label: "Diferenciais" },
-  { href: "#processo", label: "Como funciona" },
-  { href: "#atendimento", label: "Atendimento" },
-  { href: "#faq", label: "Dúvidas" },
+  { href: "#servicos", label: "Serviços", Icon: IconLayoutGrid },
+  { href: "#diferenciais", label: "Diferenciais", Icon: IconSparkles },
+  { href: "#processo", label: "Como funciona", Icon: IconZap },
+  { href: "#atendimento", label: "Atendimento", Icon: IconUsers },
+  { href: "#faq", label: "Dúvidas", Icon: IconFileText },
 ];
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -25,11 +36,20 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    document.body.dataset["menuOpen"] = open ? "true" : "false";
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = open ? "hidden" : previous || "";
     return () => {
-      delete document.body.dataset["menuOpen"];
+      document.body.style.overflow = "";
     };
   }, [open]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   return (
     <header
@@ -85,49 +105,46 @@ export function Header() {
           aria-label={open ? "Fechar menu" : "Abrir menu"}
           className="btn btn-ghost !min-h-11 !w-11 !px-0 lg:hidden"
         >
-          <svg
-            className="burger"
-            data-open={open}
-            width="22"
-            height="22"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-            fill="none"
-          >
-            <line x1="4" y1="6" x2="20" y2="6" />
-            <line x1="4" y1="12" x2="20" y2="12" />
-            <line x1="4" y1="18" x2="20" y2="18" />
-          </svg>
+          <MenuIcon open={open} />
         </button>
       </div>
 
       <div
         id="menu-mobile"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu de navegação"
         data-open={open}
+        tabIndex={open ? 0 : -1}
+        aria-hidden={!open}
         className="menu-mobile absolute inset-x-0 top-full z-40 h-[calc(100dvh-4.5rem)] overflow-y-auto bg-background lg:hidden"
       >
-        <nav aria-label="Navegação mobile" className="container-page flex flex-col gap-1 py-4">
+        <nav aria-label="Navegação mobile" className="container-page flex flex-col gap-2 py-5">
           {nav.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              onClick={() => setOpen(false)}
-              className="flex items-center justify-between gap-3 rounded-xl border border-border bg-card px-4 py-4 text-base font-semibold transition-colors hover:border-accent hover:bg-surface"
+              data-active={active === item.href}
+              onClick={() => {
+                setActive(item.href);
+                setOpen(false);
+              }}
+              tabIndex={open ? 0 : -1}
+              className="menu-link flex items-center justify-between gap-3 rounded-xl border border-border bg-card px-4 py-4 text-base font-semibold transition-colors hover:border-accent hover:bg-surface data-[active=true]:border-accent data-[active=true]:bg-surface"
             >
               <span className="flex min-w-0 items-center gap-3">
                 <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-muted text-accent">
-                  <IconArrow width={16} height={16} />
+                  <item.Icon width={17} height={17} />
                 </span>
                 <span className="truncate">{item.label}</span>
               </span>
-              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" className="shrink-0 text-muted-foreground">
-                <path d="m9 6 6 6-6 6" />
-              </svg>
+              <IconChevronRight width={18} height={18} className="shrink-0 text-muted-foreground" />
             </a>
           ))}
 
           <a
             href={whatsappHref}
+            tabIndex={open ? 0 : -1}
             onClick={() => {
               setOpen(false);
               track("click_whatsapp", { local: "menu_mobile" });
@@ -140,6 +157,7 @@ export function Header() {
           {isReal(site.phone) && (
             <a
               href={phoneHref}
+              tabIndex={open ? 0 : -1}
               onClick={() => {
                 setOpen(false);
                 track("click_telefone", { local: "menu_mobile" });
@@ -152,7 +170,6 @@ export function Header() {
           )}
         </nav>
       </div>
-
     </header>
   );
 }
