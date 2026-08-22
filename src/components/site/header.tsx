@@ -133,9 +133,7 @@ export function Header() {
               className="menu-link flex items-center justify-between gap-3 rounded-xl border border-border bg-card px-4 py-4 text-base font-semibold transition-colors hover:border-accent hover:bg-surface data-[active=true]:border-accent data-[active=true]:bg-surface"
             >
               <span className="flex min-w-0 items-center gap-3">
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-muted text-accent">
-                  <item.Icon width={17} height={17} />
-                </span>
+                <item.Icon width={18} height={18} className="shrink-0 text-accent" />
                 <span className="truncate">{item.label}</span>
               </span>
               <IconChevronRight width={18} height={18} className="shrink-0 text-muted-foreground" />
