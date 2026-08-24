@@ -103,7 +103,7 @@ export function Header() {
           aria-expanded={open}
           aria-controls="menu-mobile"
           aria-label={open ? "Fechar menu" : "Abrir menu"}
-          className="btn btn-ghost !min-h-11 !w-11 !px-0 lg:hidden"
+          className="flex h-11 w-11 shrink-0 items-center justify-center border-0 bg-transparent p-0 text-foreground lg:hidden"
         >
           <MenuIcon open={open} />
         </button>
