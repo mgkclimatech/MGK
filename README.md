@@ -1168,27 +1168,35 @@ A entrega só é considerada boa se:
 
 Construa algo que possa ser colocado em produção de verdade.
 
-https://elements.envato.com/pt-br/coolair-air-conditioning-heating-hvac-wordpres-6LLNDT3
+Referência visual: https://elements.envato.com/pt-br/coolair-air-conditioning-heating-hvac-wordpres-6LLNDT3
 
-This project was built with [Lovable](https://lovable.dev).
+## Stack
 
-**Live app**: https://mgk-clima-prime.lovable.app
+- [TanStack Start](https://tanstack.com/start) (React 19) com SSR
+- [Vite](https://vitejs.dev/) + [Tailwind CSS v4](https://tailwindcss.com/)
+- [shadcn/ui](https://ui.shadcn.com/) + Radix Primitives
+- [TanStack Query](https://tanstack.com/query) e [TanStack Router](https://tanstack.com/router)
+- Gerenciador de pacotes: [Bun](https://bun.sh/)
 
-## Build with Lovable
+## Desenvolvimento
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/f5b96415-f7f5-4272-8777-c9ffdcd90f05).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Pré-requisitos: [Bun](https://bun.sh/) instalado.
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+git clone https://github.com/mgkclimatech/MGK.git
+cd MGK
+bun install
+bun run dev
 ```
+
+O servidor de desenvolvimento sobe em `http://localhost:8080`.
+
+### Scripts
+
+| Comando | Descrição |
+| --- | --- |
+| `bun run dev` | Servidor de desenvolvimento |
+| `bun run build` | Build de produção |
+| `bun run preview` | Pré-visualização do build |
+| `bun run lint` | ESLint |
+| `bun run format` | Prettier |
