@@ -11,8 +11,8 @@ export const site = {
   name: "MGK Clima Tech",
   legalName: "MGK Clima Tech",
   tagline: "Climatização, instalação e manutenção de ar-condicionado",
-  phone: "[TELEFONE]",
-  whatsapp: "[WHATSAPP]", // apenas dígitos com DDI, ex.: 5511999999999
+  phone: "(11) 97756-4619",
+  whatsapp: "5511977564619", // apenas dígitos com DDI, ex.: 5511999999999
   email: "[E-MAIL]",
   address: "[ENDEREÇO]",
   city: "[CIDADE]",
@@ -25,7 +25,7 @@ export const site = {
 export const isReal = (value: string) => !value.startsWith("[");
 
 export const whatsappMessage =
-  "Olá, vim pelo site da MGK Clima Tech e gostaria de solicitar um orçamento.";
+  "Olá! Vim pelo site da MGK Clima Tech e gostaria de solicitar um orçamento de ar-condicionado (instalação, manutenção ou higienização). Pode me ajudar?";
 
 /** Link do WhatsApp quando houver número real; caso contrário, âncora do formulário. */
 export const whatsappHref = isReal(site.whatsapp)
