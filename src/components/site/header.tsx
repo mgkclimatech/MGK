@@ -92,7 +92,7 @@ export function Header() {
             onClick={() => track("click_whatsapp", { local: "header" })}
             className="btn btn-primary !min-h-11 !px-5 text-[0.95rem]"
           >
-            Solicitar orçamento
+            Solicitar Orçamento
           </a>
         </div>
 
@@ -149,7 +149,7 @@ export function Header() {
             className="btn btn-primary mt-3"
           >
             <IconWhatsApp width={19} height={19} />
-            Solicitar orçamento
+            Solicitar Orçamento
           </a>
           {isReal(site.phone) && (
             <a

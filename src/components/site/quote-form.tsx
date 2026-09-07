@@ -110,7 +110,7 @@ export function QuoteForm() {
       </div>
 
       <button type="submit" className="btn btn-primary mt-5 w-full">
-        Quero meu orçamento
+        Quero Meu Orçamento
       </button>
       <p className="mt-3 text-xs text-muted-foreground">
         Usamos seus dados apenas para responder a esta solicitação.

@@ -55,7 +55,7 @@ export function Hero() {
               className="btn btn-accent"
             >
               <IconWhatsApp width={20} height={20} />
-              Solicitar orçamento
+              Solicitar Orçamento
             </a>
             <a
               href={isReal(site.phone) ? phoneHref : "#orcamento"}
@@ -63,7 +63,7 @@ export function Hero() {
               className="btn btn-on-ink"
             >
               <IconPhone width={19} height={19} />
-              {isReal(site.phone) ? site.phone : "Falar com um técnico"}
+              {isReal(site.phone) ? site.phone : "Falar com um Técnico"}
             </a>
           </div>
 
