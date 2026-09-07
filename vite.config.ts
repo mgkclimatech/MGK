@@ -55,7 +55,9 @@ export default defineConfig(({ command, mode }) => {
         // (our SSR error wrapper); nitro/vite builds from this.
         server: { entry: "server" },
       }),
-      ...(command === "build" ? [nitro({ defaultPreset: "cloudflare-module" })] : []),
+      // nitro auto-detects the deploy target (Vercel, Netlify, Cloudflare, ...)
+      // from the build environment and falls back to a Node server locally.
+      ...(command === "build" ? [nitro()] : []),
       viteReact(),
     ],
   };
