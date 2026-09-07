@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import logoAsset from "@/assets/mgk-logo.png.asset.json";
 
-const logo = logoAsset.url;
+import logo from "@/assets/mgk-logo.png";
 import { phoneHref, site, isReal, track, whatsappHref } from "@/lib/site";
 import { MenuIcon } from "./menu-icon";
 import {
